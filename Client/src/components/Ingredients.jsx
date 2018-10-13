@@ -1,10 +1,10 @@
 import React from 'react';
 import { Header, IngredientBox, SoloIngredient, ItemName, ItemType, RemoveItem, Bold } from '../styles/styledComponents';
 
-const Ingredients = ({ ingredients }) => {
+const Ingredients = ({ ingredients, removeItem }) => {
   const Ingredients = ingredients.map(item => {
     return (
-      <SoloIngredient>
+      <SoloIngredient key={item.id}>
         <ItemName>
           <Bold>
             Name:    
@@ -17,7 +17,7 @@ const Ingredients = ({ ingredients }) => {
           </Bold>
           {item.type}
         </ItemType>
-        <RemoveItem>X</RemoveItem>
+        <RemoveItem name={item.id} onClick={removeItem}>X</RemoveItem>
       </SoloIngredient>
     )
   })

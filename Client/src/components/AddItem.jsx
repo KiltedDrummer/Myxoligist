@@ -19,7 +19,7 @@ const AddItem = (props) => {
           </Bold>
         </label>
         <input type="text" name="type" />
-        <Add type="sumbit" onClick={props.handleAdd} value="Add Ingredient" />
+        <Add type="submit" name="addIngredient" onClick={props.handleAdd} value="Add Ingredient" />
       </form>
     </AddIngredient>
   )
