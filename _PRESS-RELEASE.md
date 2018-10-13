@@ -35,7 +35,8 @@ Once the project moves into development, the press release can be used as a touc
   > Cocktailing is a passion of mine, and helping someone realize they can make a delicious drink from what they already have is a rewarding experience and helps people realize what is possible with what they may assume to be common items around them. Cocktails have such a deep history, it'd be a shame not to enjoy the rich flavors while getting to the bottom of it!
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > npm install
+  > npm run react-dev
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.

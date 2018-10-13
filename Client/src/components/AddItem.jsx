@@ -1,11 +1,26 @@
 import React from 'react';
-import { Header, AddIngredient } from '../styles/styledComponents';
+import { Header, AddIngredient, Centered, Bold, Add } from '../styles/styledComponents';
 
 const AddItem = (props) => {
 
   return (
     <AddIngredient>
-      add ingredient
+      <Centered>Add an Item</Centered>
+      <form>
+        <label>
+          <Bold>
+            Name:
+          </Bold>
+        </label>
+        <input type="text" name="name" />
+        <label>
+          <Bold>
+            Type:
+          </Bold>
+        </label>
+        <input type="text" name="type" />
+        <Add type="sumbit" onClick={props.handleAdd} value="Add Ingredient" />
+      </form>
     </AddIngredient>
   )
 }

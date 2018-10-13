@@ -230,7 +230,13 @@ export const Submit = styled.input`
 **********************************************
 */
 
-
+export const Add = styled.input`
+    -webkit-appearance: none;
+    width: 90px;
+    height: 20px;
+    border-radius: 10px;
+    font-weight: 700;
+`;
 
 /*
 **********************************************
