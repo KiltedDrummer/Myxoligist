@@ -1,0 +1,43 @@
+{
+  "name": "nick_the_bartender",
+  "version": "1.0.0",
+  "description": "see press release",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "express": "^4.16.4",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^3.4.10"
+  },
+  "devDependencies": {
+    "babel-loader": "^8.0.4",
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "scripts": {
+    "react-dev": "webpack -d --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KiltedDrummer/hrsf102-mvp.git"
+  },
+  "author": "Nicholas Martin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KiltedDrummer/hrsf102-mvp/issues"
+  },
+  "homepage": "https://github.com/KiltedDrummer/hrsf102-mvp#readme"
+}

@@ -1,4 +1,4 @@
-# Project Name #
+# Nick the Bartender #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,22 +17,22 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Nick the Bartender
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Nick the Bartender is designed to help people decide on a drink or cocktail based on what they have available and that has a level of difficulty appropriate. This Is designed to help people who are hosting a dinner party, as well as those looking to improve their cocktailing skills
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > At it's core, Nick the Bartender will create a list of cocktails and drinks that are possible to make given a list of ingredients a customer enters. It will then go on to allow users to sort their results both by a primarily liquor they may be interested in, as well as by difficulty, or by season. Nick the Bartender will then go further to have a list of recommended additions to a user's "bar" or ingredients list for the most potential in expanding drink selections.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Many people enjoy a good drink, but feel they either lack the skill to make it, or are unaware of what is possible with what they have available in their own home.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Through generating a list of ingredients, a skilled bartender would be able to list off a wealth of drinks possible and help the customer decide on what sounds most appealing. Nick the Bartender will act as your own personal bartender to help you get to where you desire in the most delicious, and enjoyable way possible.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > Cocktailing is a passion of mine, and helping someone realize they can make a delicious drink from what they already have is a rewarding experience and helps people realize what is possible with what they may assume to be common items around them. Cocktails have such a deep history, it'd be a shame not to enjoy the rich flavors while getting to the bottom of it!
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
