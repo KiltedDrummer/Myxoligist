@@ -4,6 +4,7 @@ import Recipes from './Recipes';
 import Ingredients from './Ingredients';
 import Search from './Search';
 import AddItem from './AddItem';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
@@ -50,6 +51,39 @@ class App extends React.Component {
       ],
     };
     this.removeItem = this.removeItem.bind(this);
+  }
+
+  getRecipes() {
+    let ingredientString = ''
+    this.state.ingredients.forEach(item => {
+      ingredientString += item.id + ', '
+    });
+    ingredientString.substring(0, ingredientString.length - 2);
+    $.ajax({
+      type: 'GET',
+      url: `/recipes/${ingredientString}`,
+      success: (res) => {
+        console.log(res.data)
+      }
+    });
+  }
+
+  getIngredients() {
+    const user_id = 1;
+    $.ajax({
+      type: 'GET',
+      url: `/user/${user_id}/ingredients`,
+      success: (res) => {
+          console.log('RES', res);
+          this.setState({
+            ingredients: res,
+          });
+      }
+    });
+  }
+
+  componentDidMount() {
+    this.getIngredients();
   }
 
   removeItem(e) {

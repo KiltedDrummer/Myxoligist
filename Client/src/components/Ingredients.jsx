@@ -1,7 +1,16 @@
 import React from 'react';
-import { Header, IngredientBox, SoloIngredient, ItemName, ItemType, RemoveItem, Bold } from '../styles/styledComponents';
+import { Header, IngredientBox, SoloIngredient, ItemName, ItemType, RemoveItem, Bold, SubType } from '../styles/styledComponents';
 
-const Ingredients = ({ ingredients, removeItem }) => {
+const Ingredients = ({ ingredients }) => {
+  const removeItem = (e) => {
+    const id = e.target.name;
+    const newIngredients = ingredients.filter(item => {
+      if (item.id !== Number(id)) {
+        return true;
+      }
+    });
+  }
+
   const Ingredients = ingredients.map(item => {
     return (
       <SoloIngredient key={item.id}>
@@ -17,6 +26,12 @@ const Ingredients = ({ ingredients, removeItem }) => {
           </Bold>
           {item.type}
         </ItemType>
+        <SubType>
+          <Bold>
+            Sub-Type:
+          </Bold>
+          {item.sub_type}
+        </SubType>
         <RemoveItem name={item.id} onClick={removeItem}>X</RemoveItem>
       </SoloIngredient>
     )

@@ -16,8 +16,8 @@ import styled from 'styled-components';
 export const MainBox = styled.div`
   display: grid;
   grid-template-areas: "Header Header"
-  "Recipes Ingredients"
-  "Search AddItem";
+                       "Recipes Ingredients"
+                       "Search AddItem";
   width: 1200px;
   height 1020px;
   border: 2px solid grey;
@@ -57,6 +57,8 @@ export const IngredientBox = styled.div`
   margin-left: 10px;
   position: relative;
   display: inline-block;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 export const SearchBox = styled.div`
@@ -153,7 +155,7 @@ export const SoloIngredient = styled.div`
   border-radius: 10px;
   display: grid;
   grid-template-areas: "name remove"
-                       "type remove";
+                       "type subtype";
   margin: 3px auto;
   padding: 0px 3px;
   width: 90%;
@@ -163,7 +165,7 @@ export const ItemName = styled.div`
   grid-area: name;
   overflow: hidden;
   margin: 2px auto;
-  width: 330px;
+  width: 300px;
   text-align: left;
 `;
 
@@ -171,17 +173,26 @@ export const ItemType = styled.div`
   grid-area: type;
   overflow: hidden;
   margin: 2px auto;
-  width: 330px;
+  width: 300px;
+  text-align: left;
+`;
+
+export const SubType = styled.div`
+  grid-area: subtype;
+  overflow: hidden;
+  margin: 2px auto;
+  width: 300px;
   text-align: left;
 `;
 
 export const RemoveItem = styled.button`
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   grid-area: remove;
   margin: 2px
-  width: 30px;
-  height: 30px;
+  margin-left: 100px;
+  width: 25px;
+  height: 20px;
   font-weight: 700;
 `;
 
@@ -232,7 +243,7 @@ export const Submit = styled.input`
 
 export const Add = styled.input`
     -webkit-appearance: none;
-    width: 90px;
+    width: 100px;
     height: 20px;
     border-radius: 10px;
     font-weight: 700;
