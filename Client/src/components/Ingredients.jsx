@@ -44,9 +44,9 @@ class Ingredients extends React.Component {
     return IngredientList
   }
 
-  componentDidUpdate() {
-    this.props.updateKeywords();
-  }
+  // componentDidUpdate() {
+  //   this.props.updateKeywords();
+  // }
 
   render() {
     return (

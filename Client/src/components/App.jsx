@@ -6,8 +6,6 @@ import Search from './Search';
 import AddItem from './AddItem';
 import $ from 'jquery';
 
-// import IngredientsContainer from '../containers/IngredientsContainer';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -105,17 +103,19 @@ class App extends React.Component {
         ingredientString += `"${word}"`
       }
     });
+
     ingredientString = ingredientString.substring(0, ingredientString.length - 2);
-    console.log(ingredientString);
+    console.log('UPDATE KEYWORDS');
     $.ajax({
       type: 'POST',
       url: `/user/${user_id}/keywords`,
       data: {
         key_words: ingredientString,
       },
-      dataType: 'text/json',
+      dataType: 'text',
       success: (res) => {
         console.log('KEYWORDS', res);
+        this.findRecipes();
       }
     });
   }
@@ -126,6 +126,7 @@ class App extends React.Component {
       type: 'GET',
       url: `/user/${user_id}/find`,
       success: (res) => {
+        console.log('RECIPES', res);
         this.setState({
           recipes: res,
         });
@@ -144,13 +145,13 @@ class App extends React.Component {
         this.setState({
           ingredients: res,
         });
+        this.updateKeywords();
       }
     });
   }
 
   componentDidMount() {
     this.getIngredients()
-    // this.updateKeywords();
     // this.findRecipes();
     this.getRecipes();
   }

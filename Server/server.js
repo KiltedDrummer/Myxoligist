@@ -69,23 +69,25 @@ app.get('/user/:user_id/remove/:ingredient_id', (req, res) => {
   });
 })
 
-app.post('/user/:user_id/ingredients', (req, res) => {
-  const user_id = req.params.user_id;
-  const ingredients = req.body.ingredients;
-  ingredients.forEach((ele, index) => {
-    ingredients[index] = Number(ele);
-  });
-  console.log('POST', ingredients);
-  db.removeItem(user_id, ingredients, (data) => {
-    console.log('POST SUCCESSFUL', data)
-    res.send(data);
-  })
-})
+// app.post('/user/:user_id/ingredients', (req, res) => {
+//   const user_id = req.params.user_id;
+//   const ingredients = req.body.ingredients;
+//   ingredients.forEach((ele, index) => {
+//     ingredients[index] = Number(ele);
+//   });
+//   console.log('POST', ingredients);
+//   db.removeItem(user_id, ingredients, (data) => {
+//     console.log('POST SUCCESSFUL', data)
+//     res.send(data);
+//   })
+// })
 
 app.post('/user/:user_id/keywords', (req, res) => {
   const user_id = req.params.user_id;
   const key_words = req.body.key_words;
-  db.updateKeywords(user_id, key_words, (err, data) => {
+  console.log('SERVER', key_words)
+  db.updateKeywords(user_id, key_words, (data) => {
+    console.log('SERVER 2 ', data)
     res.send(data);
   })
 
