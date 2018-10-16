@@ -20,39 +20,42 @@ export const MainBox = styled.div`
                        "Search AddItem";
   width: 1200px;
   height 1020px;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  background-color: #3A506B;
 `;
 
 export const Header = styled.div`
   grid-area: Header;
   text-align: center;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   position: relative;
   width: 75%;
   margin: 5px auto;
+  background-color: #609cbb;
 `;
 
 export const RecipeBox = styled.div`
   grid-area: Recipes;
   width: 575px;
   height 800px;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   margin-left: 10px;
   position: relative;
   display: inline-block;
+  background-color: #3A506B;
 `;
 
 export const IngredientBox = styled.div`
   grid-area: Ingredients;
   width: 575px;
   height 800px;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   margin-left: 10px;
   position: relative;
@@ -68,28 +71,31 @@ export const SplitBox = styled.div`
   margin-left: 10px;
   position: relative;
   display: inline-block;
+  background-color: #3A506B;
 `;
 
 export const SearchBox = styled.div`
   grid-area: Search;
   width: 575px;
   height 60px;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   margin: 5px 0px 5px 10px;
   position: relative;
   display: inline-block;
+  background-color: #609cbb;
 `;
 
 export const AddIngredient = styled.div`
   grid-area: AddItem;
   width: 575px;
   height 60px;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   margin: 5px 10px 5px 10px;
   position: relative;
   display: inline-block;
+  background-color: #609cbb;
 `;
 
 /*
@@ -107,7 +113,8 @@ export const AddIngredient = styled.div`
 
 export const RecipeItem = styled.div`
   width: 90%;
-  border: 2px solid grey;
+  border: 2px solid #240115;
+  background-color: #609cbb;
   border-radius: 10px;
   margin: 5px auto;
 `;
@@ -168,6 +175,8 @@ export const SoloIngredient = styled.div`
   margin: 3px auto;
   padding: 0px 3px;
   width: 90%;
+
+  background-color: #609cbb;
 `;
 
 export const ItemName = styled.div`
@@ -203,12 +212,13 @@ export const RemoveItem = styled.button`
   width: 25px;
   height: 20px;
   font-weight: 700;
+  background-color: #b9a97f;
 `;
 
 export const Minimized = styled.div`
   width: 575px;
   height 54px;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   position: relative;
   display: inline-block;
@@ -219,7 +229,7 @@ export const Minimized = styled.div`
 export const Half = styled.div`
   width: 575px;
   height 390px;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   position: relative;
   display: inline-block;
@@ -230,7 +240,7 @@ export const Half = styled.div`
 export const Full = styled.div`
   width: 575px;
   height 740px;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   position: relative;
   display: inline-block;
@@ -291,6 +301,7 @@ export const Add = styled.input`
     height: 20px;
     border-radius: 10px;
     font-weight: 700;
+    margin-left: 5px;
 `;
 
 /*
@@ -319,11 +330,12 @@ export const Bold = styled.div`
 
 export const Head = styled.div`
   text-align: center;
-  border: 2px solid grey;
+  border: 2px solid #240115;
   border-radius: 10px;
   position: relative;
   width: 75%;
   height: 40px;
   margin: 5px auto;
   line-height: 0px;
+  background-color: #609cbb;
 `;

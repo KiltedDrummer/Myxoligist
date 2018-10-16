@@ -5,15 +5,15 @@ import { types } from 'util';
 class LiquorCabinet extends React.Component {
   constructor(props) {
     super(props);
-    this.removeItem = this.removeItem.bind(this);
+    // this.removeItem = this.removeItem.bind(this);
     this.types = new Set(['Common', 'Garnish', '', 'Mixer']);
   }
 
-  removeItem(e) {
-    const id = e.target.name;
-    console.log('REMOVE', id)
-    this.props.updateIngredients(id);
-  }
+  // removeItem(e) {
+  //   const id = e.target.name;
+  //   console.log('REMOVE', id)
+  //   this.props.updateIngredients(id);
+  // }
 
   buildLiquors() {
     const { ingredients } = this.props;
@@ -39,7 +39,7 @@ class LiquorCabinet extends React.Component {
               </Bold>
               {item.sub_type}
             </SubType>
-            <RemoveItem name={item.id} onClick={this.removeItem}>X</RemoveItem>
+            <RemoveItem name={item.id} onClick={this.props.removeItem}>X</RemoveItem>
           </SoloIngredient>
         )
       }
