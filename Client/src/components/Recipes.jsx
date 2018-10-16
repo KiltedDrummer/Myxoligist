@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, RecipeBox } from '../styles/styledComponents';
+import { Head, RecipeBox } from '../styles/styledComponents';
 import Recipe from './Recipe';
 
 const Recipes = ({ recipes }) => {
@@ -10,9 +10,9 @@ const Recipes = ({ recipes }) => {
   })
   return (
     <RecipeBox>
-      <Header>
+      <Head>
         <h2>Available Recipes</h2>
-      </Header>
+      </Head>
       { RecipeList }
     </RecipeBox>
   )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, IngredientBox, SoloIngredient, ItemName, ItemType, RemoveItem, Bold, SubType } from '../styles/styledComponents';
+import { Head, IngredientBox, SoloIngredient, ItemName, ItemType, RemoveItem, Bold, SubType } from '../styles/styledComponents';
 
 class Ingredients extends React.Component {
   constructor(props) {
@@ -51,9 +51,9 @@ class Ingredients extends React.Component {
   render() {
     return (
       <IngredientBox>
-        <Header>
+        <Head>
           <h2>Available Ingredients</h2>
-        </Header>
+        </Head>
         { this.buildItems() }
       </IngredientBox>
     )

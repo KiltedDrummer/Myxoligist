@@ -61,6 +61,15 @@ export const IngredientBox = styled.div`
   overflow-x: hidden;
 `;
 
+export const SplitBox = styled.div`
+  grid-area: Ingredients;
+  width: 575px;
+  height 800px;
+  margin-left: 10px;
+  position: relative;
+  display: inline-block;
+`;
+
 export const SearchBox = styled.div`
   grid-area: Search;
   width: 575px;
@@ -196,6 +205,41 @@ export const RemoveItem = styled.button`
   font-weight: 700;
 `;
 
+export const Minimized = styled.div`
+  width: 575px;
+  height 145px;
+  border: 2px solid grey;
+  border-radius: 10px;
+  position: relative;
+  display: inline-block;
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
+
+export const Half = styled.div`
+  width: 575px;
+  height 390px;
+  border: 2px solid grey;
+  border-radius: 10px;
+  position: relative;
+  display: inline-block;
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
+
+export const Full = styled.div`
+  width: 575px;
+  height 645px;
+  border: 2px solid grey;
+  border-radius: 10px;
+  position: relative;
+  display: inline-block;
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
+
+
+
 /*
 **********************************************
 **********************************************
@@ -271,4 +315,15 @@ export const Bold = styled.div`
   display: inline;
   font-weight: 700;
   padding-right: 5px;
+`;
+
+export const Head = styled.div`
+  text-align: center;
+  border: 2px solid grey;
+  border-radius: 10px;
+  position: relative;
+  width: 75%;
+  height: 60px;
+  margin: 5px auto;
+  line-height: 12px;
 `;

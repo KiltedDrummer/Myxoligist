@@ -2,6 +2,7 @@ import React from 'react';
 import { Header, MainBox } from '../styles/styledComponents';
 import Recipes from './Recipes';
 import Ingredients from './Ingredients';
+import SplitIngredients from './SplitIngredients';
 import Search from './Search';
 import AddItem from './AddItem';
 import $ from 'jquery';
@@ -50,12 +51,33 @@ class App extends React.Component {
         },
       ],
       user_id: 1,
+      onTheCounter: false,
+      liquorCabinet: false,
     };
     this.updateIngredients = this.updateIngredients.bind(this);
     this.getIngredients = this.getIngredients.bind(this);
     this.add = this.add.bind(this);
     this.findRecipes = this.findRecipes.bind(this);
     this.updateKeywords = this.updateKeywords.bind(this);
+    this.minimizeCounter = this.minimizeCounter.bind(this);
+    this.minimizeCabinet = this.minimizeCabinet.bind(this);
+  }
+
+  minimizeCounter() {
+    console.log('On The Conter');
+    
+    const newValue = !this.state.onTheCounter;
+    this.setState({
+      onTheCounter: newValue,
+    })
+  }
+
+  minimizeCabinet() {
+    console.log('Liquor Cabinet');
+    const newValue = !this.state.liquorCabinet;
+    this.setState({
+      liquorCabinet: newValue,
+    })
   }
 
     //  REFACTOR AXIOS
@@ -180,7 +202,13 @@ class App extends React.Component {
           <h3>What shall we mix up today?</h3>
         </Header>
         <Recipes recipes={this.state.recipes} />
-        <Ingredients ingredients={this.state.ingredients} updateIngredients={this.updateIngredients} updateKeywords={this.updateKeywords} />
+        <SplitIngredients 
+          ingredients={this.state.ingredients}
+          updateIngredients={this.updateIngredients}
+          updateKeywords={this.updateKeywords}
+          minimizeCabinet={this.minimizeCabinet}
+          minimizeCounter={this.minimizeCounter}
+        />
         <Search />
         <AddItem addItem={this.add} />
 
