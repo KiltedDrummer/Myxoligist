@@ -54,6 +54,8 @@ class App extends React.Component {
     this.updateIngredients = this.updateIngredients.bind(this);
     this.getIngredients = this.getIngredients.bind(this);
     this.add = this.add.bind(this);
+    this.findRecipes = this.findRecipes.bind(this);
+    this.findRecipes = this.findRecipes.bind(this);
   }
 
   add(name) {
@@ -81,24 +83,48 @@ class App extends React.Component {
     });
   }
 
-  updateRecipes() {
+  updateKeywords() {
+    const { user_id } = this.state;
     const keyWords = new Set();
+    console.log(this.state.ingredients);
     this.state.ingredients.forEach(item => {
+      keyWords.add(item.name);
       keyWords.add(item.type);
       keyWords.add(item.sub_type);
     });
 
     let ingredientString = ''
-    keyWords.forEach(word => {
-      ingredientString += word + ', '
+    keyWords.forEach((word, index) => {
+      if (index !== keyWords.length - 1) {
+        ingredientString += `"${word}", `
+      } else {
+        ingredientString += `"${word}"`
+      }
     });
-    ingredientString.substring(0, ingredientString.length - 2);
+    ingredientString = ingredientString.substring(0, ingredientString.length - 2);
+    console.log(ingredientString);
+    $.ajax({
+      type: 'POST',
+      url: `/user/${user_id}/keywords`,
+      data: {
+        key_words: ingredientString,
+      },
+      dataType: 'text/json',
+      success: (res) => {
+        console.log('KEYWORDS', res);
+      }
+    });
+  }
+
+  findRecipes() {
+    const { user_id } = this.state;
     $.ajax({
       type: 'GET',
-      url: `/recipes/${ingredientString}`,
+      url: `/user/${user_id}/find`,
       success: (res) => {
-        console.log('UPDATE CLIENT', res)
-        this.getIngredients();
+        this.setState({
+          recipes: res,
+        });
       }
     });
   }
@@ -119,7 +145,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getIngredients();
+    this.getIngredients()
+    .then(() => this.updateKeywords())
+    // .then(()=> this.findRecipes())
+    // .then(() => this.getRecipes())
   }
 
   updateIngredients(newIngredients) {

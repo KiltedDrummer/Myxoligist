@@ -19,12 +19,10 @@ class AddItem extends React.Component {
 
   handleAdd(e) {
     e.preventDefault();
-    console.log(this.state.searchName);
     this.props.addItem(this.state.searchName);
   }
 
   render() {
-    console.log('AddItem', this.props)
     return (
       <AddIngredient>
         <Centered>Add an Item</Centered>

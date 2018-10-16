@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+//  REWORK to get all recipes based on a user's key_words
 app.get('/recipes/:user_id/:ingredients', (req, res) => {
   const user_id = req.params.user_id;
   const ingredients = req.params.ingredients;
@@ -48,6 +49,14 @@ app.get('/user/:user_id/addItem/:name', (req, res) => {
   });
 })
 
+app.get('/user/:user_id/find', (req, res) => {
+  const user_id = req.params.user_id;
+  db.findRecipes(user_id, (data) => {
+    console.log(data);
+    res.send(data);
+  })
+})
+
 app.post('/user/:user_id/ingredients', (req, res) => {
   const user_id = req.params.user_id;
   const ingredients = req.body.ingredients;
@@ -59,6 +68,15 @@ app.post('/user/:user_id/ingredients', (req, res) => {
     console.log('POST SUCCESSFUL', data)
     res.send(data);
   })
+})
+
+app.post('/user/:user_id/keywords', (req, res) => {
+  const user_id = req.params.user_id;
+  const key_words = req.body.key_words;
+  db.updateKeywords(user_id, key_words, (data) => {
+    res.send(data);
+  })
+
 })
 
 

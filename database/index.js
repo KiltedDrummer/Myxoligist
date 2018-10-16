@@ -49,24 +49,34 @@ const getRecipes = (user_id, callback) => {
   })
 }
 
-const findRecipes = (keyWords, user_id, callback) => {
-  client.query(`SELECT recipes.id, recipes.name, recipes.instructions, recipes.ingredients_measured AS ingredients FROM recipes WHERE recipes.ingredients_raw <@ ${keyWords}`, (err, res) => {
+const findRecipes = (user_id, callback) => {
+  console.log('FIND');
+  client.query(`SELECT recipes.id, recipes.name, recipes.instructions, recipes.ingredients_measured AS ingredients FROM recipes WHERE recipes.ingredients_raw <@ (SELECT key_words FROM users WHERE id = ${user_id})`, (err, res) => {
     if (err) {
       console.error(err.stack);
     }
-    const recipeIds = [];
-    res.rows.forEach(recipe => {
-      recipeIds.push(recipe.id);
-    });
-
-    client.query(`UPDATE users SET recipes = ${recipeIds} WHERE id = ${user_id}`, (err, res) => {
-      if (err) {
-        console.error(err);
-      }
-      console.log('UPDATED user recipes', res);
-    });
-
     callback(res.rows);
+    // const recipeIds = [];
+    // res.rows.forEach(recipe => {
+    //   recipeIds.push(recipe.id);
+    // });
+
+    // client.query(`UPDATE users SET recipes = ${recipeIds} WHERE id = ${user_id}`, (err, res) => {
+    //   if (err) {
+    //     console.error(err);
+    //   }
+    //   console.log('UPDATED user recipes', res);
+    // });
+
+  })
+}
+
+const updateKeywords = (user_id, key_words, callback) => {
+  client.query(`UPDATE users SET key_words = '{${key_words}}' WHERE id = ${user_id}`, (err, res) => {
+    if (err) {
+      console.error(err);
+    }
+    callback(res);
   })
 }
 
@@ -88,3 +98,4 @@ module.exports.getIngredients = getIngredients;
 module.exports.getRecipes = getRecipes;
 module.exports.findRecipes = findRecipes;
 module.exports.removeItem = removeItem;
+module.exports.updateKeywords = updateKeywords;
