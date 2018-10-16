@@ -146,9 +146,9 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getIngredients()
-    .then(() => this.updateKeywords())
-    // .then(()=> this.findRecipes())
-    // .then(() => this.getRecipes())
+    this.updateKeywords();
+    this.findRecipes();
+    this.getRecipes();
   }
 
   updateIngredients(newIngredients) {

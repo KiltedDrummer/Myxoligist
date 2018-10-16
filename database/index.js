@@ -41,7 +41,7 @@ const getIngredients = (user_id, callback) => {
 }
 
 const getRecipes = (user_id, callback) => {
-  client.query(`SELECT recipes.id, recipes.name, recipes.instructions, recipes.ingredients_measured AS ingredients FROM recipes WHERE ARRAY[recipes.id] <@ (SELECT recipes FROM users WHERE id = ${user_id})`, (err, res) => {
+  client.query(`SELECT recipes.id, recipes.name, recipes.instructions, recipes.tags, recipes.ingredients_measured AS ingredients FROM recipes WHERE ARRAY[recipes.id] <@ (SELECT recipes FROM users WHERE id = ${user_id})`, (err, res) => {
     if (err) {
       console.error(err.stack);
     }

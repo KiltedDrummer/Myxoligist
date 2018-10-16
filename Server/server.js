@@ -52,7 +52,7 @@ app.get('/user/:user_id/addItem/:name', (req, res) => {
 app.get('/user/:user_id/find', (req, res) => {
   const user_id = req.params.user_id;
   db.findRecipes(user_id, (data) => {
-    console.log(data);
+    console.log('SERVER 56', data);
     res.send(data);
   })
 })
