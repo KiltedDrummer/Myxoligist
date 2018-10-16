@@ -22,6 +22,10 @@ class AddItem extends React.Component {
     this.props.addItem(this.state.searchName);
   }
 
+  // addBasics() {
+
+  // }
+
   render() {
     return (
       <AddIngredient>

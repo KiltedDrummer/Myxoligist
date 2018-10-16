@@ -165,6 +165,8 @@ class App extends React.Component {
         // this.getIngredients();
         this.setState({
           ingredients: res,
+        }, () => {
+          this.updateKeywords();
         })
       }
     });
