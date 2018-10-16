@@ -23,6 +23,7 @@ app.get('/recipes/:user_id/:ingredients', (req, res) => {
   const user_id = req.params.user_id;
   const ingredients = req.params.ingredients;
   console.log(ingredients);
+  db.get
 });
 
 app.get('/user/:user_id/ingredients', (req, res) => {
@@ -30,6 +31,34 @@ app.get('/user/:user_id/ingredients', (req, res) => {
   db.getIngredients(user_id, (data) => {
     res.send(data)
   });
+})
+
+app.get('/user/:user_id/recipes', (req, res) => {
+  const user_id = req.params.user_id;
+  db.getRecipes(user_id, (data) => {
+    res.send(data)
+  })
+});
+
+app.get('/user/:user_id/addItem/:name', (req, res) => {
+  const user_id = req.params.user_id;
+  const name = req.params.name;
+  db.addItem(name, user_id, (data) => {
+    res.send(data);
+  });
+})
+
+app.post('/user/:user_id/ingredients', (req, res) => {
+  const user_id = req.params.user_id;
+  const ingredients = req.body.ingredients;
+  ingredients.forEach((ele, index) => {
+    ingredients[index] = Number(ele);
+  });
+  console.log('POST', ingredients);
+  db.removeItem(user_id, ingredients, (data) => {
+    console.log('POST SUCCESSFUL', data)
+    res.send(data);
+  })
 })
 
 

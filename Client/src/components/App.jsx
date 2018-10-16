@@ -49,35 +49,71 @@ class App extends React.Component {
           id: 6,
         },
       ],
+      user_id: 1,
     };
-    this.removeItem = this.removeItem.bind(this);
+    this.updateIngredients = this.updateIngredients.bind(this);
+    this.getIngredients = this.getIngredients.bind(this);
+    this.add = this.add.bind(this);
+  }
+
+  add(name) {
+    const { user_id } = this.state;
+    $.ajax({
+      type: 'GET',
+      url: `/user/${user_id}/addItem/${name}`,
+      success: (res) => {
+        console.log('ADDED', res);
+      }
+    })
   }
 
   getRecipes() {
-    let ingredientString = ''
+    const { user_id } = this.state;
+    $.ajax({
+      type: 'GET',
+      url: `/user/${user_id}/recipes`,
+      success: (res) => {
+        console.log('RES', res);
+        this.setState({
+          recipes: res,
+        });
+      }
+    });
+  }
+
+  updateRecipes() {
+    const keyWords = new Set();
     this.state.ingredients.forEach(item => {
-      ingredientString += item.id + ', '
+      keyWords.add(item.type);
+      keyWords.add(item.sub_type);
+    });
+
+    let ingredientString = ''
+    keyWords.forEach(word => {
+      ingredientString += word + ', '
     });
     ingredientString.substring(0, ingredientString.length - 2);
     $.ajax({
       type: 'GET',
       url: `/recipes/${ingredientString}`,
       success: (res) => {
-        console.log(res.data)
+        console.log('UPDATE CLIENT', res)
+        this.getIngredients();
       }
     });
   }
 
   getIngredients() {
-    const user_id = 1;
+    console.log('I MADE IT');
+    const { user_id } = this.state;
     $.ajax({
       type: 'GET',
       url: `/user/${user_id}/ingredients`,
       success: (res) => {
-          console.log('RES', res);
-          this.setState({
-            ingredients: res,
-          });
+        console.log('RES', res);
+        this.setState({
+          ingredients: res,
+        });
       }
     });
   }
@@ -86,16 +122,18 @@ class App extends React.Component {
     this.getIngredients();
   }
 
-  removeItem(e) {
-    const id = e.target.name;
-    const newIngredients = this.state.ingredients.filter(item => {
-      if (item.id !== Number(id)) {
-        return true;
+  updateIngredients(newIngredients) {
+    $.ajax({
+      type: 'POST',
+      url: `/user/${1}/ingredients`,
+      data: {
+        ingredients: newIngredients,
+      },
+      dataType: 'text/json',
+      success: (res) => {
+        console.log(res);
+        this.getIngredients();
       }
-    });
-
-    this.setState({
-      ingredients: newIngredients,
     });
   }
 
@@ -107,9 +145,9 @@ class App extends React.Component {
           <h3>What shall we mix up today?</h3>
         </Header>
         <Recipes recipes={this.state.recipes} />
-        <Ingredients ingredients={this.state.ingredients} removeItem={this.removeItem} />
+        <Ingredients ingredients={this.state.ingredients} update={this.updateIngredients} />
         <Search />
-        <AddItem />
+        <AddItem addItem={this.add} />
 
       </MainBox>
     )

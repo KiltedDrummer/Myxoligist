@@ -15,19 +15,20 @@ const addItem = (name, user_id, callback) => {
   // find id for ingredient in DB
   // append user ingredients with id 
   // if user.types doesn't contain new item type, append to array.
-  client.query(`SELECT id FROM ingredients WHERE LOWER(name) = LOWER(${name})`, (err, res) => {
+  client.query(`UPDATE users SET ingredients = ingredients || (SELECT id FROM ingredients WHERE LOWER(name) = LOWER('${name}')) WHERE id = ${user_id}`, (err, res) => {
+    if (err) {
+      console.error(err);
+    } else {
+      client.query(`SELECT id, ingredients, recipes FROM users WHERE id = ${user_id}`, (err, res) => {
         if (err) {
           console.error(err);
+        } else {
+          console.log(res.rows);
+          callback(res.rows);
         }
-        client.query(`UPDATE users SET ingredients = ingredients || ${res.id} WHERE id = ${user_id}`, (err, res) => {
-          if (err) {
-            console.error(err);
-          } else {
-            console.log(res);
-            callback(res);
-          }
-        });
       });
+    }
+  });
 }
 
 const getIngredients = (user_id, callback) => {
@@ -39,7 +40,51 @@ const getIngredients = (user_id, callback) => {
   });
 }
 
+const getRecipes = (user_id, callback) => {
+  client.query(`SELECT recipes.id, recipes.name, recipes.instructions, recipes.ingredients_measured AS ingredients FROM recipes WHERE ARRAY[recipes.id] <@ (SELECT recipes FROM users WHERE id = ${user_id})`, (err, res) => {
+    if (err) {
+      console.error(err.stack);
+    }
+    callback(res.rows);
+  })
+}
+
+const findRecipes = (keyWords, user_id, callback) => {
+  client.query(`SELECT recipes.id, recipes.name, recipes.instructions, recipes.ingredients_measured AS ingredients FROM recipes WHERE recipes.ingredients_raw <@ ${keyWords}`, (err, res) => {
+    if (err) {
+      console.error(err.stack);
+    }
+    const recipeIds = [];
+    res.rows.forEach(recipe => {
+      recipeIds.push(recipe.id);
+    });
+
+    client.query(`UPDATE users SET recipes = ${recipeIds} WHERE id = ${user_id}`, (err, res) => {
+      if (err) {
+        console.error(err);
+      }
+      console.log('UPDATED user recipes', res);
+    });
+
+    callback(res.rows);
+  })
+}
+
+const removeItem = (user_id, ingredients, callback) => {
+  console.log('DATABASE', ingredients.join());
+  client.query(`UPDATE users SET ingredients = '{${ingredients.join()}}' WHERE id = ${user_id}`, (err, res) => {
+    if (err) {
+      console.error(err);
+    }
+    console.log('UPDATED user recipes');
+    callback(res);
+  });
+}
+
 
 module.exports.connection = client;
 module.exports.addItem = addItem;
 module.exports.getIngredients = getIngredients;
+module.exports.getRecipes = getRecipes;
+module.exports.findRecipes = findRecipes;
+module.exports.removeItem = removeItem;

@@ -1,14 +1,18 @@
 import React from 'react';
+import $ from 'jquery';
 import { Header, IngredientBox, SoloIngredient, ItemName, ItemType, RemoveItem, Bold, SubType } from '../styles/styledComponents';
 
-const Ingredients = ({ ingredients }) => {
+const Ingredients = ({ ingredients, update }) => {
   const removeItem = (e) => {
     const id = e.target.name;
-    const newIngredients = ingredients.filter(item => {
+    const newIngredients = [];
+    ingredients.forEach(item => {
       if (item.id !== Number(id)) {
-        return true;
+        newIngredients.push(item.id);
       }
     });
+    console.log('NEW', newIngredients)
+    update(newIngredients);
   }
 
   const Ingredients = ingredients.map(item => {
