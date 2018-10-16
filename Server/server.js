@@ -57,6 +57,18 @@ app.get('/user/:user_id/find', (req, res) => {
   })
 })
 
+app.get('/user/:user_id/remove/:ingredient_id', (req, res) => {
+  const user_id = req.params.user_id;
+  const ingredient_id = req.params.ingredient_id;
+  // console.log('REMOVE', ingredients);
+  db.removeItem(user_id, ingredient_id, (data) => {
+    console.log('POST SUCCESSFUL', data)
+    db.getIngredients(user_id, (data) => {
+      res.send(data);
+    });
+  });
+})
+
 app.post('/user/:user_id/ingredients', (req, res) => {
   const user_id = req.params.user_id;
   const ingredients = req.body.ingredients;
@@ -73,7 +85,7 @@ app.post('/user/:user_id/ingredients', (req, res) => {
 app.post('/user/:user_id/keywords', (req, res) => {
   const user_id = req.params.user_id;
   const key_words = req.body.key_words;
-  db.updateKeywords(user_id, key_words, (data) => {
+  db.updateKeywords(user_id, key_words, (err, data) => {
     res.send(data);
   })
 

@@ -80,9 +80,9 @@ const updateKeywords = (user_id, key_words, callback) => {
   })
 }
 
-const removeItem = (user_id, ingredients, callback) => {
-  console.log('DATABASE', ingredients.join());
-  client.query(`UPDATE users SET ingredients = '{${ingredients.join()}}' WHERE id = ${user_id}`, (err, res) => {
+const removeItem = (user_id, ingredient_id, callback) => {
+  // console.log('DATABASE', ingredients.join());
+  client.query(`UPDATE users SET ingredients = array_remove(ingredients, ${Number(ingredient_id)}) WHERE id = ${user_id}`, (err, res) => {
     if (err) {
       console.error(err);
     }

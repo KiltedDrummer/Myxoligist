@@ -6,6 +6,8 @@ import Search from './Search';
 import AddItem from './AddItem';
 import $ from 'jquery';
 
+// import IngredientsContainer from '../containers/IngredientsContainer';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -55,9 +57,10 @@ class App extends React.Component {
     this.getIngredients = this.getIngredients.bind(this);
     this.add = this.add.bind(this);
     this.findRecipes = this.findRecipes.bind(this);
-    this.findRecipes = this.findRecipes.bind(this);
+    this.updateKeywords = this.updateKeywords.bind(this);
   }
 
+    //  REFACTOR AXIOS
   add(name) {
     const { user_id } = this.state;
     $.ajax({
@@ -65,6 +68,7 @@ class App extends React.Component {
       url: `/user/${user_id}/addItem/${name}`,
       success: (res) => {
         console.log('ADDED', res);
+        this.getIngredients();
       }
     })
   }
@@ -146,22 +150,21 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getIngredients()
-    this.updateKeywords();
-    this.findRecipes();
+    // this.updateKeywords();
+    // this.findRecipes();
     this.getRecipes();
   }
 
-  updateIngredients(newIngredients) {
+  updateIngredients(toRemove) {
     $.ajax({
-      type: 'POST',
-      url: `/user/${1}/ingredients`,
-      data: {
-        ingredients: newIngredients,
-      },
-      dataType: 'text/json',
+      type: 'GET',
+      url: `/user/${1}/remove/${toRemove}`,
       success: (res) => {
-        console.log(res);
-        this.getIngredients();
+        console.log('UPDATED INGREDIENTS', res);
+        // this.getIngredients();
+        this.setState({
+          ingredients: res,
+        })
       }
     });
   }
@@ -174,7 +177,7 @@ class App extends React.Component {
           <h3>What shall we mix up today?</h3>
         </Header>
         <Recipes recipes={this.state.recipes} />
-        <Ingredients ingredients={this.state.ingredients} update={this.updateIngredients} />
+        <Ingredients ingredients={this.state.ingredients} updateIngredients={this.updateIngredients} updateKeywords={this.updateKeywords} />
         <Search />
         <AddItem addItem={this.add} />
 
