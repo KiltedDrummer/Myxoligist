@@ -58,7 +58,7 @@ class OnTheCounter extends React.Component {
           {this.buildCommons()}
         </Half>
       );
-    } else if (!this.props.liquorCabinet && this.props.onTheCounter) {
+    } else if (this.props.liquorCabinet && !this.props.onTheCounter) {
       // as full
       return (
         <Full>

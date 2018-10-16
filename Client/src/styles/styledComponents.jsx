@@ -207,7 +207,7 @@ export const RemoveItem = styled.button`
 
 export const Minimized = styled.div`
   width: 575px;
-  height 145px;
+  height 54px;
   border: 2px solid grey;
   border-radius: 10px;
   position: relative;
@@ -229,7 +229,7 @@ export const Half = styled.div`
 
 export const Full = styled.div`
   width: 575px;
-  height 645px;
+  height 740px;
   border: 2px solid grey;
   border-radius: 10px;
   position: relative;
@@ -323,7 +323,7 @@ export const Head = styled.div`
   border-radius: 10px;
   position: relative;
   width: 75%;
-  height: 60px;
+  height: 40px;
   margin: 5px auto;
-  line-height: 12px;
+  line-height: 0px;
 `;

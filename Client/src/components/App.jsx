@@ -208,6 +208,8 @@ class App extends React.Component {
           updateKeywords={this.updateKeywords}
           minimizeCabinet={this.minimizeCabinet}
           minimizeCounter={this.minimizeCounter}
+          onTheCounter={this.state.onTheCounter}
+          liquorCabinet={this.state.liquorCabinet}
         />
         <Search />
         <AddItem addItem={this.add} />
