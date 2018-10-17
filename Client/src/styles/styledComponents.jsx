@@ -222,7 +222,7 @@ export const Minimized = styled.div`
   border-radius: 10px;
   position: relative;
   display: inline-block;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
 `;
 
